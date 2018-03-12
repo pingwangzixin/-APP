@@ -1,0 +1,35 @@
+<html ng-app="app">
+
+<head>
+    <title>看电视</title>
+    <link rel="stylesheet" href="http://www.h5wx.cn/jianli/static/css/reset.css">
+    <link rel="stylesheet" href="./css/main.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.2.10/angular.min.js"></script>
+    <script src="./js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body ng-controller="tvctrl">
+    <div class="conent">
+        <div class="left">
+            <ul class="wx_chanalclass">
+                <li class="wx_mt10" ng-repeat="i in tv.channelList"> <b class="pindao">{{i.channel}}</b>
+                    <ul class="wx_hide">
+                        <li class="wx_mt8" ng-repeat="cl in i.pindaoList" dataurl="{{cl.url}}" ng-click="play($event)">{{cl.chname}}</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="right" style="position:relative">
+           <p class="wx_dangqian">当前播放：<span ng-bind="playingname">cctv1</span></p>
+           <video controls="controls" id="playtv" poster="http://www.h5wx.cn/playtv.jpg"></video>
+           <div class="wx_qiehuanline">切换线路：
+               <ul class="wx_xianluul">
+                   <li ng-repeat="line in lines track by $index" urls="{{line.url}}"  ng-click="qiehuanline($event)">{{line.name}}</li>
+               </ul>
+           </div>
+        </div>
+    </div>
+</body>
+</html>
